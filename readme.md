@@ -2,4 +2,4 @@
 
 ## Descripción
 
-Repositorio del TPI de Programación II. Hacer fork del repostorio y completar siguiendo las consigas del TPI publicadas en el CVG.
+Repositorio del TPI de Programación II. Hacer fork del repositorio y completar siguiendo las consignas del TPI publicadas en el CVG.
