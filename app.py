@@ -1,7 +1,8 @@
 # Trabajo Práctico I - Programación II
 
 import os
-from bibloteca import ejemplares_prestados, devolver_ejemplar_libro, menu, validacionOpcion
+from bibloteca import ejemplares_prestados, devolver_ejemplar_libro, menu, validacionOpcion, registrar_nuevo_libro
+from libro import nuevo_libro, generar_codigo
 
 print("\nBienvenido!")
 respuesta = ""
@@ -19,7 +20,7 @@ while respuesta != "salir":
         elif int(opt) == 2:
             devolver_ejemplar_libro()
         elif int(opt) == 3:
-            # completar
+            registrar_nuevo_libro()
             print()
         elif int(opt) == 4:
             # completar
