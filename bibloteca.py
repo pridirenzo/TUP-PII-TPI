@@ -75,14 +75,34 @@ def registrar_nuevo_libro():
 
 
 def eliminar_ejemplar_libro():
-    # completar
-    return None
+    eliminacion = str(input("Ingrese el código del ejemplar que desea eliminar.\n"))
+    posicion = 0
+    bandera = False
+
+    for busqueda in libros:
+        if eliminacion == busqueda["cod"]:
+            del libros[posicion]
+            bandera = True
+            break
+        posicion += 1
+    
+    if bandera == False:
+        print("¡Error! No se localizó ningun ejemplar con el código ingresado, reinténtelo.\n")
+    else:
+        print("El ejemplar fue eliminado con éxito.")
+    
 
 
 def prestar_ejemplar_libro():
-    # completar
-    return None
-
+    numero_ejemplar = 1
+    for prestados in libros:
+        print("Título del ejemplar n°", numero_ejemplar, ":", prestados["titulo"])
+        if prestados["cant_ej_pr"] > 0:
+            print("Cantidad de ejemplares prestados:", prestados["cant_ej_pr"])
+            print()
+        else: 
+            print("No hubo ningun préstamo de este ejemplar.\n")
+        numero_ejemplar += 1
 
 def devolver_ejemplar_libro():
     encontrado = False

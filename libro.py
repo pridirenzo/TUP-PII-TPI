@@ -9,7 +9,7 @@ libro3 = {'cod': 'adOd09UE', 'cant_ej_ad': 1, 'cant_ej_pr': 0, "titulo": "El có
 # en funcion de eso realizamos el resto del codigo. 
 def nuevo_libro():
     
-    titulo_libro = str(input("Ingrese el título del libro que desea registrar::\n"))
+    titulo_libro = str(input("Ingrese el título del libro que desea registrar:\n"))
     autor_libro = str(input("Ingrese el nombre de su autor/a:\n"))
     adquiridos = int(input("Ingrese la cantidad de ejemplares adquiridos:\n"))
     while adquiridos < 1:
