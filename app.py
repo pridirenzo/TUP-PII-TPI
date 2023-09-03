@@ -21,12 +21,10 @@ while respuesta != "salir":
             devolver_ejemplar_libro()
         elif int(opt) == 3:
             registrar_nuevo_libro()
-            print()
         elif int(opt) == 4:
             eliminar_ejemplar_libro()
         elif int(opt) == 5:
             prestar_ejemplar_libro()
-            print()
         elif int(opt) == 6:
             respuesta = "salir"
         else:

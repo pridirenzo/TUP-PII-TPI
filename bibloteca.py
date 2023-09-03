@@ -75,7 +75,7 @@ def registrar_nuevo_libro():
 
 
 def eliminar_ejemplar_libro():
-    eliminacion = str(input("Ingrese el código del ejemplar que desea eliminar.\n"))
+    eliminacion = input("Ingrese el código del ejemplar que desea eliminar.\n")
     posicion = 0
     bandera = False
 
@@ -112,27 +112,22 @@ def devolver_ejemplar_libro():
         if codigoIngresado == libro.get('cod'):
             encontrado = True
         else: 
-            not encontrado
-        if encontrado and libro['cant_ej_pr'] > 0:
-            print("Desea confirmar la devolución? S/N")
-            validacionOpcion()
-            if validacion and op == "S":
-                nuevaCantidadPrestados = libro["cant_ej_pr"] - 1  # se devuelve un libro y disminuye la cant de libros q estan prestados
-                libro["cant_ej_pr"] = nuevaCantidadPrestados
-                break
-            else:
-                break
-        if encontrado and libro['cant_ej_pr'] == 0:
-            print("-----------------------------------") 
-            print("ERROR: El libro no posee ejemplares prestados.")
-            print("-----------------------------------")
-        if not encontrado:
-            print("-----------------------------------") 
-            print("ERROR: No se encontró el ejemplar.")
-            print("-----------------------------------")
-        
+            encontrado = False
+    if encontrado and libro['cant_ej_pr'] > 0:
+        print("Desea confirmar la devolución? S/N")
+        validacionOpcion()
+        if validacion and op == "S":
+            nuevaCantidadPrestados = libro["cant_ej_pr"] - 1  # se devuelve un libro y disminuye la cant de libros q estan prestados
+            libro["cant_ej_pr"] = nuevaCantidadPrestados
+    if encontrado == True and libro['cant_ej_pr'] == 0:
+        print("-----------------------------------") 
+        print("ERROR: El libro no posee ejemplares prestados.")
+        print("-----------------------------------")
+    if encontrado == False:
+        print("-----------------------------------") 
+        print("ERROR: No se encontró el ejemplar.")
+        print("-----------------------------------")
+    
 
 
-def nuevo_libro():
-    # completar
-    return None
+
