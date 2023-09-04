@@ -11,6 +11,7 @@ libros.append(l.libro2)
 libros.append(l.libro3)
 
 validacion = bool, False
+banderaDevolucion = bool, False
 op = str
 
 def menu():
@@ -96,9 +97,10 @@ def prestar_ejemplar_libro():
             print()
         else: 
             print("No hubo ningun préstamo de este ejemplar.\n")
-        numero_ejemplar += 1
+        numero_ejemplar += 1 
 
 def devolver_ejemplar_libro():
+    banderaDevolucion = False
     print("Ingrese código del libro a devolver:")
     codigoIngresado = input()
     for libro in libros:
@@ -113,13 +115,11 @@ def devolver_ejemplar_libro():
                     nuevaCantidadDisponibles = libro["cant_ej_ad"] + 1 # como se devolvio un libro, ahora hay nuevo libro disponible
                     libro["cant_ej_ad"] = nuevaCantidadDisponibles
                     print("Devolución realizada correctamente")
+                    banderaDevolucion = True
                 if op == "N":
                     print("Devolución rechazada exitosamente")
-            if encontrado and libro['cant_ej_pr'] == 0:
+                    banderaDevolucion = False
+            if encontrado and libro['cant_ej_pr'] == 0 and banderaDevolucion == False:
                 print("-----------------------------------") 
                 print("ERROR: El libro no posee ejemplares prestados.")
                 print("-----------------------------------")
-    
-
-
-

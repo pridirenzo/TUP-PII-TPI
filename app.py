@@ -34,3 +34,6 @@ while respuesta != "salir":
     # input("Presione cualquier tecla para continuar....")  # Pausa
 
 print("Gracias por operar con nuestra biblioteca. Hasta luego! :)")
+print("Biblioteca cortesía de Priscila y Mariano :*")
+
+print("https://github.com/pridirenzo/TUP-PII-TPI-DIRENZO_PRISCILA-CASTELLI_MARIANO.git")
