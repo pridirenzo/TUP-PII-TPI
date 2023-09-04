@@ -1,7 +1,7 @@
 # Trabajo Práctico I - Programación II
 
 import os
-from bibloteca import ejemplares_prestados, devolver_ejemplar_libro, menu, validacionOpcion, registrar_nuevo_libro, eliminar_ejemplar_libro, prestar_ejemplar_libro
+from bibloteca import ejemplares_prestados, devolver_ejemplar_libro, menu, registrar_nuevo_libro, eliminar_ejemplar_libro, prestar_ejemplar_libro
 from libro import nuevo_libro, generar_codigo
 
 print("\nBienvenido!")
@@ -33,4 +33,4 @@ while respuesta != "salir":
         print("Ingrese una opción numérica")
     # input("Presione cualquier tecla para continuar....")  # Pausa
 
-print("Hasta luego!.")
+print("Gracias por operar con nuestra biblioteca. Hasta luego! :)")

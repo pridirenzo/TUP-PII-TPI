@@ -10,7 +10,8 @@ libros.append(l.libro1)
 libros.append(l.libro2)
 libros.append(l.libro3)
 
-validacion = bool
+validacion = bool, False
+op = str
 
 def menu():
     print("-----------------------------------")
@@ -22,52 +23,45 @@ def menu():
     print("6 - Salir")
     print("-----------------------------------")
 
-op = input
-
-def validacionOpcion():  # funcion agregada para validacion de opcion de confirmacion
-    op = input()
-    if op == "S" or op == "N":
-        validacion = True
-    else:
-        validacion = False
-        print("Ingrese una opción correcta")
-        validacionOpcion()
-
-
-    return validacion and op
 
 
 def ejemplares_prestados():
-    encontrado = False
+    encontrado = False  # inicializo bandera en falso
     print("Ingrese código del libro a tomar prestado:")
     codigoIngresado = input()
+    
     for libro in libros:
         if codigoIngresado == libro.get("cod"):
             encontrado = True
-        if not encontrado:
-            print("-----------------------------------") 
-            print("ERROR: No se encontró el ejemplar.")
             print("-----------------------------------")
-        if encontrado:
-            print("-----------------------------------")  # si el codigo ingresado por el cliente coincide con el codigo de un libro real, entonces se muestran los datos
-            print("Título:", libro["autor"])
-            print("Autor:", libro["titulo"])
-            if libro["cant_ej_ad"] == 0:
-                print("No quedan ejemplares para prestar.")
-                print("-----------------------------------") 
-                print("\nIngrese la opción de menú:")
+            print("Título:", libro["titulo"])
+            print("Autor:", libro["autor"])
+            
             if libro["cant_ej_ad"] > 0:
                 print("Cantidad de ejemplares disponibles:", libro["cant_ej_ad"])
                 print("-----------------------------------")
                 print("Desea confirmar el préstamo? S/N")
-                validacionOpcion()
-                if validacion:
-                    nuevaCantidadDisponibles = libro["cant_ej_ad"] - 1 # actualizo ejemplares prestados de dicho libro
+                op = input()
+                if op == "S":
+                    nuevaCantidadDisponibles = libro["cant_ej_ad"] - 1
                     libro["cant_ej_ad"] = nuevaCantidadDisponibles
-                    break
-                else:
-                    break
-
+                    nuevaCantidadPrestados = libro["cant_ej_pr"] + 1 
+                    libro["cant_ej_pr"] = nuevaCantidadPrestados
+                    print("Su préstamo se ha realizado con éxito!")
+                if op == "N":
+                    print("Préstamo rechazado exitosamente")
+                if op != "N" and op != "S":
+                    print("ERROR. Opción inexistente") # aqui el usuario debe volver a ingresar la opcion 1, con la correspondiente respuesta
+                
+            if libro["cant_ej_ad"] == 0:
+                print("No quedan ejemplares para prestar.")
+                print("-----------------------------------")
+                break 
+           
+    if encontrado != True:
+        print("-----------------------------------") 
+        print("ERROR: No se encontró el ejemplar.")
+        print("-----------------------------------")
 
 def registrar_nuevo_libro():
     nuevo_libro = l.nuevo_libro()
@@ -105,28 +99,26 @@ def prestar_ejemplar_libro():
         numero_ejemplar += 1
 
 def devolver_ejemplar_libro():
-    encontrado = False
-    print("Ingrese código del libro:")
+    print("Ingrese código del libro a devolver:")
     codigoIngresado = input()
     for libro in libros:
         if codigoIngresado == libro.get('cod'):
             encontrado = True
-        else: 
-            encontrado = False
-    if encontrado and libro['cant_ej_pr'] > 0:
-        print("Desea confirmar la devolución? S/N")
-        validacionOpcion()
-        if validacion and op == "S":
-            nuevaCantidadPrestados = libro["cant_ej_pr"] - 1  # se devuelve un libro y disminuye la cant de libros q estan prestados
-            libro["cant_ej_pr"] = nuevaCantidadPrestados
-    if encontrado == True and libro['cant_ej_pr'] == 0:
-        print("-----------------------------------") 
-        print("ERROR: El libro no posee ejemplares prestados.")
-        print("-----------------------------------")
-    if encontrado == False:
-        print("-----------------------------------") 
-        print("ERROR: No se encontró el ejemplar.")
-        print("-----------------------------------")
+            if encontrado and libro['cant_ej_pr'] > 0:
+                print("Desea confirmar la devolución? S/N")
+                op = input()
+                if op == "S":
+                    nuevaCantidadPrestados = libro["cant_ej_pr"] - 1  # se devuelve un libro y disminuye la cant de libros q estan prestados
+                    libro["cant_ej_pr"] = nuevaCantidadPrestados
+                    nuevaCantidadDisponibles = libro["cant_ej_ad"] + 1 # como se devolvio un libro, ahora hay nuevo libro disponible
+                    libro["cant_ej_ad"] = nuevaCantidadDisponibles
+                    print("Devolución realizada correctamente")
+                if op == "N":
+                    print("Devolución rechazada exitosamente")
+            if encontrado and libro['cant_ej_pr'] == 0:
+                print("-----------------------------------") 
+                print("ERROR: El libro no posee ejemplares prestados.")
+                print("-----------------------------------")
     
 
 
