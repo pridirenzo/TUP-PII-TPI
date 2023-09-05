@@ -101,6 +101,7 @@ def prestar_ejemplar_libro():
 
 def devolver_ejemplar_libro():
     banderaDevolucion = False
+    encontrado = False
     print("Ingrese código del libro a devolver:")
     codigoIngresado = input()
     for libro in libros:
@@ -123,3 +124,8 @@ def devolver_ejemplar_libro():
                 print("-----------------------------------") 
                 print("ERROR: El libro no posee ejemplares prestados.")
                 print("-----------------------------------")
+
+    if encontrado != True:
+        print("-----------------------------------") 
+        print("ERROR: No se encontró el ejemplar.")
+        print("-----------------------------------")
