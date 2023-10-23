@@ -1,0 +1,66 @@
+""" Escribe un programa que solicite al usuario ingresar las calificaciones de un grupo de estudiantes.
+ El programa debe permitir al usuario ingresar calificaciones una por una, y debe detenerse cuando
+   el usuario ingrese un valor negativo o cuando se hayan ingresado 10 calificaciones, lo que ocurra primero.
+
+Una vez que se hayan ingresado las calificaciones, el programa debe calcular y mostrar lo siguiente:
+
+La cantidad de calificaciones ingresadas.
+El promedio de las calificaciones ingresadas.
+Cuántas calificaciones están por encima del promedio y cuántas están por debajo del promedio."""
+
+# Contadores
+cant = 0
+promedio_alto = 0
+promedio_bajo = 0
+
+# Lista
+calificaciones = []
+
+# Bandera
+flag = True
+
+
+# Funciones
+def promedio():
+    promediar = calificaciones / cant
+    return promediar
+
+def analisis_promedio(contenedor):
+
+    for x in calificaciones:
+        if x > contenedor:
+            promedio_alto =+ 1
+        else:
+            promedio_bajo =+ 1
+
+    print("~ La cantidad de notas que están por encima del promedio es de:", promedio_alto)
+    print("~ La cantidad de notas que están por debajo del promedio es de:", promedio_bajo)
+
+
+
+
+while flag == True:
+
+    notas = float(input("Ingrese las calificaciones de los alumnos.\n"))
+    if notas < 0:
+        print("¡Error! No puede ingresar un valor negativo.\n")
+        break
+
+    cant =+ 1
+    calificaciones.append(notas)
+
+    promedio()
+    contenedor = promedio()
+    cant =+ 1
+
+    if cant > 10:
+        flag = False
+        
+
+print("° Resumen:")
+print("° El promedio es de:", contenedor)
+analisis_promedio()
+
+
+
+
